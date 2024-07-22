@@ -1,0 +1,6 @@
+@TransportationSolution_HostAddress = http://localhost:5211
+
+GET {{TransportationSolution_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
