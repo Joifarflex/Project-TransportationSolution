@@ -31,9 +31,21 @@ namespace TransportationSolution.Handler
             var getListVehicle = await _VehicleRepository.GetVehicleListAsync();
 
             var checkVehicleTypeName = getListVehicle.Select(x => x.vehicleTypeName).Contains(command.VehicleTypeName);
-            if (!checkVehicleTypeName)
+            if (checkVehicleTypeName)
             {
                 return response.BadRequest("Vehicle Type Name is already exist!");
+            }
+
+            var checkVehicleTypeCode = getListVehicle.Select(x => x.vehicleTypeCode).Contains(command.VehicleTypeCode);
+            if (checkVehicleTypeCode)
+            {
+                return response.BadRequest("Vehicle Type Code is already exist!");
+            }
+
+            var checkLicenseNumber = getListVehicle.Select(x => x.licenseNumber).Contains(command.LicenseNumber);
+            if (checkLicenseNumber)
+            {
+                return response.BadRequest("License Number is already exist!");
             }
 
             try

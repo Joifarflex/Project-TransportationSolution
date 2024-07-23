@@ -55,16 +55,16 @@ namespace TransportationSolution.Handler
                 return response.BadRequest("Data vehicle is not exist.");
             }
 
-            var vehicleCode = checkExistVehicle.Select(x => x.vehicleTypeCode == command.VehicleTypeCode).FirstOrDefault();
+            var vehicleCode = checkExistVehicle.Select(x => x.vehicleTypeCode).Contains(command.VehicleTypeCode);
             if (!vehicleCode)
             {
-                return response.BadRequest("Vehicle Type Code : " + command.VehicleTypeCode + " is not exist anymore.");
+                return response.BadRequest("Vehicle Type Code : " + command.VehicleTypeCode + " is not exist.");
             }
 
-            var licenseNumber = checkExistVehicle.Select(x => x.licenseNumber == command.LicenseNumber).FirstOrDefault();
+            var licenseNumber = checkExistVehicle.Select(x => x.licenseNumber).Contains(command.LicenseNumber);
             if (!licenseNumber)
             {
-                return response.BadRequest("License Number : " + command.LicenseNumber + " is not exist anymore.");
+                return response.BadRequest("License Number : " + command.LicenseNumber + " is not exist.");
             }
 
             //validate if every driver data has exist in master data
@@ -76,7 +76,7 @@ namespace TransportationSolution.Handler
                 return response.BadRequest("Data driver is not exist.");
             }
 
-            var driverCode = checkExistDriver.Select(x => x.driverCode == command.DriverCode).FirstOrDefault();
+            var driverCode = checkExistDriver.Select(x => x.driverCode).Contains(command.DriverCode);
             if (!driverCode)
             {
                 return response.BadRequest("Driver Code : " + command.DriverCode + " is not exist anymore.");

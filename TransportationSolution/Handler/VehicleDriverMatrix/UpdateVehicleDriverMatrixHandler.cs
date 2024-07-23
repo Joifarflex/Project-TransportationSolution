@@ -58,7 +58,7 @@ namespace TransportationSolution.Handler
             var licenseNumber = checkExistVehicle.Select(x => x.licenseNumber == command.LicenseNumber).FirstOrDefault();
             if (!licenseNumber)
             {
-                return response.BadRequest("License Number : " + command.LicenseNumber + " is not exist anymore.");
+                return response.BadRequest("License Number : " + command.LicenseNumber + " is not exist.");
             }
 
             //validate if every driver data has exist in master data
@@ -73,7 +73,7 @@ namespace TransportationSolution.Handler
             var driverCode = checkExistDriver.Select(x => x.driverCode == command.DriverCode).FirstOrDefault();
             if (!driverCode)
             {
-                return response.BadRequest("Driver Code : " + command.DriverCode + " is not exist anymore.");
+                return response.BadRequest("Driver Code : " + command.DriverCode + " is not exist.");
             }
 
             try

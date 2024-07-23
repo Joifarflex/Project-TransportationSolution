@@ -7,7 +7,8 @@ namespace TransportationSolution.Validation.VehicleDriverMatrix
     {
         public UpdateVehicleDriverMatrixValidation()
         {
-            RuleFor(x => x.VehicleDriverMatrixId).NotNull().NotEmpty().WithMessage("Vehicle Driver Matrix Id cannot be null or empty");
+            RuleFor(x => x.VehicleDriverMatrixId).GreaterThan(0).WithMessage("Vehicle Driver Matrix Id cannot be 0")
+                                                 .NotNull().NotEmpty().WithMessage("Vehicle Driver Matrix Id cannot be null or empty");
             RuleFor(x => x.VehicleId).NotNull().NotEmpty().WithMessage("Vehicle Id cannot be null or empty");
             RuleFor(x => x.VehicleTypeCode).NotNull().NotEmpty().WithMessage("Vehicle Type Code cannot be null or empty");
             RuleFor(x => x.LicenseNumber).NotNull().NotEmpty().WithMessage("License Number cannot be null or empty");

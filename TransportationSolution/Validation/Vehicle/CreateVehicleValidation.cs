@@ -11,7 +11,6 @@ namespace TransportationSolution.Validation
             RuleFor(x => x.VehicleTypeName).NotNull().NotEmpty().WithMessage("Vehicle Type Name cannot be null or empty");
             RuleFor(x => x.LicenseNumber).NotNull().NotEmpty().WithMessage("License Number cannot be null or empty");
             RuleFor(x => x.Year).NotNull().NotEmpty().WithMessage("Year cannot be null or empty");
-            RuleFor(x => x.IsVendor).NotNull().NotEmpty().WithMessage("Is vendor null or empty");
         }
     }
 }

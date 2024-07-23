@@ -24,20 +24,22 @@ namespace TransportationSolution.Handler
             //validation for duplicate vehicle data
             var getListVehicle = await _VehicleRepository.GetVehicleListAsync();
 
-            var queryVehicleCode = getListVehicle.Select(x => x.vehicleTypeCode == command.VehicleTypeCode).FirstOrDefault();
+            var queryAllVehicle = getListVehicle.Where(x => x.vehicleId != command.VehicleId).ToList();
+
+            var queryVehicleCode = queryAllVehicle.Select(x => x.vehicleTypeCode).Contains(command.VehicleTypeCode);
             if (queryVehicleCode)
             {
                 return response.BadRequest("Vehicle Type Code : " +command.VehicleTypeCode+ " is already exist!");
             }
 
-            var queryVehicleName = getListVehicle.Select(x => x.vehicleTypeName == command.VehicleTypeName).FirstOrDefault();
+            var queryVehicleName = queryAllVehicle.Select(x => x.vehicleTypeName).Contains(command.VehicleTypeName);
             if (queryVehicleName)
             {
                 return response.BadRequest("Vehicle Type Name : " + command.VehicleTypeName + " is already exist!");
             }
 
-            var licenseCheck = getListVehicle.Where(x => x.licenseNumber == command.LicenseNumber).FirstOrDefault();
-            if (licenseCheck != null)
+            var licenseCheck = queryAllVehicle.Select(x => x.licenseNumber).Contains(command.LicenseNumber);
+            if (licenseCheck)
             {
                 return response.BadRequest("License Number : " + command.LicenseNumber + " is already exist");
             }
